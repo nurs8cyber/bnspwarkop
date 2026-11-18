@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WARKOP GEN Z — Tempat Nongkrong, Ngopi, dan Cerita Tanpa Batas</title>
+  <meta name="description" content="Warung Kopi Gen Z — Tempat Nongkrong, Ngopi, dan Cerita Tanpa Batas di Bekasi Selatan. Aneka Kopi, Bubur Ayam, Bubur Kacang Ijo, Roti Bakar, Indomie & Free WiFi." />
+  <link rel="icon" href="img/logo.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wgz: {
+              black: '#0b0908',
+              surface: '#16110e',
+              card: '#1f1712',
+              coffee: '#3b2314',
+              cream: '#f5eadc',
+              muted: '#c8b6a2',
+              orange: '#f97316',
+              orangeDark: '#ea580c'
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-wgz-black text-wgz-cream antialiased selection:bg-wgz-orange selection:text-white">
+
+  <!-- STATUS ARSITEKTUR DATA BANNER -->
+  <div id="modeStatusBar" class="bg-wgz-coffee/85 border-b border-wgz-cream/10 text-xs py-1.5 px-4 text-center text-wgz-cream/95">
+    Memuat sistem WARKOP GEN Z...
+  </div>
+
+  <!-- =====================================================================
+       BAGIAN 1: HALAMAN UTAMA PENGUNJUNG (PUBLIC LANDING PAGE)
+       ===================================================================== -->
+  <div id="publicLandingView">
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-wgz-cream/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        <!-- Logo Kiri -->
+        <a href="#beranda" class="flex items-center gap-3 group">
+          <img src="img/logo.png" alt="Logo Warkop Gen Z" class="w-12 h-12 rounded-full object-cover border-2 border-wgz-orange shadow-lg group-hover:scale-105 transition-transform" />
+          <div>
+            <span class="font-display font-extrabold text-xl sm:text-2xl tracking-tight text-wgz-cream">WARKOP <span class="text-wgz-orange">GEN Z</span></span>
+            <p class="text-[11px] text-wgz-muted hidden sm:block">Coffee • Hangout • Free WiFi</p>
+          </div>
+        </a>
+
+        <!-- Menu Navigasi -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-wgz-muted">
+          <a href="#beranda" class="hover:text-wgz-orange transition-colors">Beranda</a>
+          <a href="#video-promo" class="hover:text-wgz-orange transition-colors">Video Promo</a>
+          <a href="#katalog-menu" class="hover:text-wgz-orange transition-colors">Menu & Harga</a>
+          <a href="#wifi-zone" class="hover:text-wgz-orange transition-colors">Free WiFi</a>
+          <a href="#kontak-footer" class="hover:text-wgz-orange transition-colors">Lokasi</a>
+        </nav>
+
+        <!-- Tombol LOGIN Pojok Kanan Atas -->
+        <div class="relative" id="loginDropdownWrapper">
+          <button id="loginDropdownBtn" type="button" class="inline-flex items-center gap-2 bg-wgz-orange hover:bg-wgz-orangeDark text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-lg shadow-wgz-orange/30 transition-all cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            <span>LOGIN</span>
+            <svg class="w-4 h-4 transition-transform" id="loginChevron" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+
+          <!-- Pilihan Dropdown Login -->
+          <div id="loginDropdownMenu" class="hidden absolute right-0 mt-3 w-60 rounded-2xl bg-wgz-cream text-wgz-black shadow-2xl border border-wgz-orange/30 overflow-hidden z-50">
+            <div class="px-4 py-2.5 bg-wgz-coffee text-wgz-cream text-xs font-semibold uppercase tracking-wider">
+              Pilih Akses Masuk
+            </div>
+            <button type="button" onclick="openLoginModal('admin')" class="w-full text-left px-4 py-3.5 hover:bg-wgz-orange hover:text-white transition-colors flex items-center gap-3 font-semibold text-sm border-b border-black/10">
+              <span class="w-8 h-8 rounded-lg bg-wgz-black text-wgz-orange flex items-center justify-center text-base">⚙️</span>
+              <div>
+                <div>1. Login Admin</div>
+                <div class="text-[11px] opacity-75 font-normal">Kelola produk, iklan & laporan</div>
+              </div>
+            </button>
+            <button type="button" onclick="openLoginModal('kasir')" class="w-full text-left px-4 py-3.5 hover:bg-wgz-orange hover:text-white transition-colors flex items-center gap-3 font-semibold text-sm">
+              <span class="w-8 h-8 rounded-lg bg-wgz-black text-wgz-orange flex items-center justify-center text-base">🛒</span>
+              <div>
+                <div>2. Login Kasir</div>
+                <div class="text-[11px] opacity-75 font-normal">POS transaksi & cetak struk</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="hero-backdrop relative pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-wgz-orange/20 border border-wgz-orange/40 text-wgz-orange text-xs sm:text-sm font-semibold mb-6">
+          <span>🔥 Warkop Kekinian Anak Muda Bekasi</span>
+          <span>•</span>
+          <span id="heroOpenHours">Buka Setiap Hari: 08.00 – 02.00 WIB</span>
+        </div>
+
+        <h1 id="heroMainTitle" class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-wgz-cream drop-shadow-lg leading-tight">
+          WARUNG KOPI <span class="text-wgz-orange">GEN Z</span>
+        </h1>
+
+        <p id="heroTagline" class="mt-4 text-lg sm:text-2xl text-wgz-cream/90 font-medium italic max-w-2xl mx-auto">
+          "Tempat Nongkrong, Ngopi, dan Cerita Tanpa Batas."
+        </p>
+
+        <!-- VIDEO PROMOSI WARKOP -->
+        <div id="video-promo" class="mt-10 max-w-4xl mx-auto">
+          <div class="rounded-3xl p-2 sm:p-3 bg-gradient-to-br from-wgz-orange/40 via-wgz-coffee to-wgz-black shadow-2xl border border-wgz-orange/30">
+            <div class="relative rounded-2xl overflow-hidden bg-black aspect-video" id="promoVideoContainer"></div>
+            <div class="flex flex-wrap items-center justify-between gap-2 px-3 pt-3 pb-1 text-left">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-wgz-orange animate-ping"></span>
+                <span id="promoVideoTitle" class="text-xs sm:text-sm font-semibold text-wgz-cream">Promo Nongkrong Malam — Ngopi Dulu, Jangan Lupa Bahagia!</span>
+              </div>
+              <span class="text-[11px] text-wgz-muted">Video Promo Resmi Warkop Gen Z</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KATA-KATA MUTIARA BERANIMASI -->
+        <div class="mt-8 max-w-3xl mx-auto">
+          <div class="glass-panel rounded-2xl px-6 py-5 border border-wgz-orange/30 relative">
+            <div class="text-wgz-orange text-2xl font-serif leading-none mb-1">“</div>
+            <p id="quoteDisplayText" class="quote-fade text-base sm:text-xl font-semibold text-wgz-cream">
+              "Kopi boleh pahit, tetapi hidup jangan kehilangan semangat."
+            </p>
+            <div class="mt-3 flex items-center justify-center gap-2" id="quoteDots"></div>
+          </div>
+        </div>
+
+        <!-- HIGHLIGHT KATEGORI CEPAT -->
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-4xl mx-auto">
+          <a href="#katalog-menu" onclick="selectCategoryFilter('Aneka Kopi')" class="glass-panel rounded-2xl p-3.5 hover:border-wgz-orange transition-all text-center group">
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">☕</div>
+            <div class="font-bold text-sm text-wgz-cream">Aneka Kopi</div>
+            <div class="text-xs text-wgz-orange font-semibold mt-0.5">Mulai Rp4.000</div>
+          </a>
+          <a href="#katalog-menu" onclick="selectCategoryFilter('Bubur Ayam')" class="glass-panel rounded-2xl p-3.5 hover:border-wgz-orange transition-all text-center group">
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🥣</div>
+            <div class="font-bold text-sm text-wgz-cream">Bubur Ayam</div>
+            <div class="text-xs text-wgz-orange font-semibold mt-0.5">Mulai Rp10.000</div>
+          </a>
+          <a href="#katalog-menu" onclick="selectCategoryFilter('Bubur Kacang Ijo')" class="glass-panel rounded-2xl p-3.5 hover:border-wgz-orange transition-all text-center group">
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🫘</div>
+            <div class="font-bold text-sm text-wgz-cream">Bubur Kacang Ijo</div>
+            <div class="text-xs text-wgz-orange font-semibold mt-0.5">Mulai Rp7.000</div>
+          </a>
+          <a href="#katalog-menu" onclick="selectCategoryFilter('Roti Bakar')" class="glass-panel rounded-2xl p-3.5 hover:border-wgz-orange transition-all text-center group">
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🍞</div>
+            <div class="font-bold text-sm text-wgz-cream">Roti Bakar</div>
+            <div class="text-xs text-wgz-orange font-semibold mt-0.5">Mulai Rp8.000</div>
+          </a>
+          <a href="#wifi-zone" class="col-span-2 sm:col-span-1 glass-panel rounded-2xl p-3.5 hover:border-wgz-orange transition-all text-center group">
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">📶</div>
+            <div class="font-bold text-sm text-wgz-cream">Free WiFi</div>
+            <div class="text-xs text-emerald-400 font-semibold mt-0.5">Gratis Pelanggan</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATALOG MENU MAKANAN & MINUMAN -->
+    <section id="katalog-menu" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-wgz-orange font-bold text-xs uppercase tracking-widest">Menu Favorit Anak Nongkrong</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-wgz-cream mt-1">Katalog Makanan & Minuman</h2>
+          <p class="text-wgz-muted text-sm mt-2 max-w-xl">Harga merakyat, rasa juara, suasana nyaman buat nugas, mabar, maupun ngobrol santai sampai malam.</p>
+        </div>
+        <div class="w-full md:w-80">
+          <div class="relative">
+            <input id="publicSearchInput" type="text" placeholder="Cari kopi, bubur, roti bakar, indomie..." class="w-full bg-wgz-surface border border-wgz-cream/15 rounded-full pl-11 pr-4 py-3 text-sm text-wgz-cream placeholder-wgz-muted/60 focus:outline-none focus:border-wgz-orange" />
+            <svg class="w-5 h-5 text-wgz-muted absolute left-4 top-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div id="publicCategoryTabs" class="flex flex-wrap gap-2.5 mb-8"></div>
+      <div id="publicProductGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- KATEGORI KHUSUS FREE WIFI -->
+    <section id="wifi-zone" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-wgz-coffee via-[#26160c] to-wgz-surface border border-wgz-orange/30 p-6 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
+        <div class="flex items-start gap-5">
+          <div class="w-16 h-16 rounded-2xl bg-wgz-orange/20 border border-wgz-orange flex items-center justify-center text-3xl flex-shrink-0">📶</div>
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-2">FASILITAS PELANGGAN</span>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-wgz-cream">WiFi Gratis untuk Pelanggan!</h3>
+            <p id="publicWifiNote" class="text-wgz-muted text-sm mt-1">Gratis untuk seluruh pelanggan yang memesan makanan/minuman di tempat.</p>
+            <div class="mt-3 text-xs text-wgz-orange font-semibold" id="publicWifiSpeed">Up to 100 Mbps Unlimited</div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-auto grid grid-cols-1 sm:grid-cols-2 gap-4 bg-wgz-black/60 p-5 rounded-2xl border border-wgz-cream/10">
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-wgz-muted">Nama Jaringan (SSID)</div>
+            <div id="publicWifiSsid" class="font-mono font-bold text-base sm:text-lg text-wgz-cream mt-0.5">WarkopGenZ_FreeWiFi</div>
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-wgz-muted">Password WiFi</div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span id="publicWifiPass" class="font-mono font-bold text-base sm:text-lg text-wgz-orange">Ngopi123</span>
+              <button type="button" onclick="copyWifiPassword()" class="text-xs bg-wgz-cream/10 hover:bg-wgz-orange text-wgz-cream hover:text-white px-2.5 py-1 rounded-lg transition-colors">
+                Salin
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUASANA & INTERIOR WARKOP -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="relative rounded-3xl overflow-hidden h-72 border border-wgz-cream/10 group">
+          <img src="img/hero-warkop.jpg" alt="Suasana Warkop Gen Z" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end">
+            <span class="text-wgz-orange text-xs font-bold uppercase tracking-wider">Cozy & Aesthetic</span>
+            <h4 class="font-display font-bold text-xl text-wgz-cream mt-1">Suasana Warkop Modern</h4>
+            <p class="text-xs text-wgz-muted mt-1">Pencahayaan hangat, stop kontak di setiap meja, dan musik santai.</p>
+          </div>
+        </div>
+        <div class="relative rounded-3xl overflow-hidden h-72 border border-wgz-cream/10 group">
+          <img src="img/interior-warkop.jpg" alt="Interior Tempat Nongkrong Warkop Gen Z" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end">
+            <span class="text-wgz-orange text-xs font-bold uppercase tracking-wider">Nongkrong & Mabar</span>
+            <h4 class="font-display font-bold text-xl text-wgz-cream mt-1">Interior Tempat Nongkrong Nyaman</h4>
+            <p class="text-xs text-wgz-muted mt-1">Cocok untuk diskusi komunitas, nugas kuliah, maupun kumpul bareng sahabat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER WEBSITE -->
+    <footer id="kontak-footer" class="mt-16 bg-[#070605] border-t border-wgz-cream/10 pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div>
+          <div class="flex items-center gap-3">
+            <img src="img/logo.png" alt="Logo Warkop Gen Z" class="w-11 h-11 rounded-full object-cover border border-wgz-orange" />
+            <span class="font-display font-extrabold text-xl text-wgz-cream">WARKOP <span class="text-wgz-orange">GEN Z</span></span>
+          </div>
+          <p class="text-sm text-wgz-muted mt-3">Tempat Nongkrong, Ngopi, dan Cerita Tanpa Batas. Kualitas kafe, harga merakyat.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-wider text-wgz-orange mb-3">Alamat Warkop</h4>
+          <p id="footerAddress" class="text-sm text-wgz-cream/90 leading-relaxed">
+            Jl. Kemandoran No.119, RT.004/RW.023, Pekayon Jaya, Kec. Bekasi Selatan, Kota Bekasi, Jawa Barat 17148.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-wider text-wgz-orange mb-3">Kontak & Akses</h4>
+          <p class="text-sm text-wgz-cream/90">WhatsApp: <a id="footerWaText" href="https://wa.me/6289518000755" target="_blank" rel="noopener" class="text-emerald-400 font-bold hover:underline">089518000755</a></p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <button type="button" onclick="openLoginModal('admin')" class="text-xs bg-wgz-surface hover:bg-wgz-coffee border border-wgz-cream/15 px-3.5 py-2 rounded-lg text-wgz-cream transition-colors">
+              Portal Admin
+            </button>
+            <button type="button" onclick="openLoginModal('kasir')" class="text-xs bg-wgz-surface hover:bg-wgz-coffee border border-wgz-cream/15 px-3.5 py-2 rounded-lg text-wgz-cream transition-colors">
+              Portal Kasir
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-wgz-cream/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-wgz-muted">
+        <div class="font-bold text-wgz-cream text-sm">Created by : <span id="footerCreator" class="text-wgz-orange">NUR SARIFUDIN</span></div>
+        <div>© 2026 WARKOP GEN Z — Siap Deploy GitHub Pages.</div>
+      </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON POJOK KANAN BAWAH -->
+    <a id="floatingWaBtn" href="https://wa.me/6289518000755" target="_blank" rel="noopener noreferrer" aria-label="Info Lengkap Hubungi Kami via WhatsApp" class="wa-float fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-full shadow-2xl transition-transform hover:scale-105">
+      <svg class="w-7 h-7 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/></svg>
+      <div class="text-left leading-tight">
+        <div class="text-[11px] font-extrabold tracking-wide uppercase">INFO LENGKAP HUBUNGI KAMI</div>
+        <div class="text-xs font-semibold text-emerald-100">089518000755</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- =====================================================================
+       BAGIAN 2: DASHBOARD ADMIN (11 MENU SIDEBAR)
+       ===================================================================== -->
+  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col lg:flex-row">
+    <!-- Mobile Bar -->
+    <div class="lg:hidden bg-wgz-surface border-b border-wgz-cream/10 px-4 py-3 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-2.5">
+        <img src="img/logo.png" alt="Logo" class="w-9 h-9 rounded-full border border-wgz-orange" />
+        <span class="font-display font-extrabold text-base text-wgz-cream">ADMIN <span class="text-wgz-orange">GEN Z</span></span>
+      </div>
+      <button type="button" id="adminMobileMenuBtn" class="px-3 py-1.5 rounded-lg bg-wgz-orange text-white text-xs font-bold">Menu</button>
+    </div>
+
+    <!-- Sidebar 11 Menu -->
+    <aside id="adminSidebar" class="hidden lg:flex flex-col w-full lg:w-72 bg-wgz-surface border-r border-wgz-cream/10 p-4 justify-between flex-shrink-0">
+      <div>
+        <div class="flex items-center gap-3 px-2 py-3 mb-4 border-b border-wgz-cream/10">
+          <img src="img/logo.png" alt="Logo Warkop Gen Z" class="w-11 h-11 rounded-full border-2 border-wgz-orange" />
+          <div>
+            <div class="font-display font-extrabold text-lg text-wgz-cream leading-none">WARKOP <span class="text-wgz-orange">GEN Z</span></div>
+            <div class="text-[11px] text-wgz-muted mt-1">Panel Kontrol Admin</div>
+          </div>
+        </div>
+
+        <nav class="space-y-1 text-sm" id="adminNavMenu">
+          <button type="button" data-tab="dashboard" class="sidebar-btn active w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>📊</span><span>1. Dashboard</span></button>
+          <button type="button" data-tab="produk" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>☕</span><span>2. Kelola Produk</span></button>
+          <button type="button" data-tab="kategori" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>🗂️</span><span>3. Kategori Produk</span></button>
+          <button type="button" data-tab="iklan" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>🎬</span><span>4. Kelola Video Iklan</span></button>
+          <button type="button" data-tab="quotes" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>💬</span><span>5. Kata-Kata Mutiara</span></button>
+          <button type="button" data-tab="wifi" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>📶</span><span>6. Pengaturan WiFi</span></button>
+          <button type="button" data-tab="transaksi" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>🧾</span><span>7. Data Transaksi</span></button>
+          <button type="button" data-tab="laporan" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>📈</span><span>8. Laporan Penjualan</span></button>
+          <button type="button" data-tab="kasir" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>👥</span><span>9. Manajemen Kasir</span></button>
+          <button type="button" data-tab="pengaturan" class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-wgz-cream/85 hover:bg-wgz-cream/5 transition-all"><span>⚙️</span><span>10. Pengaturan Website</span></button>
+          <button type="button" onclick="logoutApp()" class="w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 text-red-400 hover:bg-red-500/15 transition-all mt-2"><span>🚪</span><span>11. Logout</span></button>
+        </nav>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-wgz-cream/10 text-xs text-wgz-muted space-y-2">
+        <button type="button" onclick="showLandingPage()" class="block w-full text-center py-2 rounded-xl bg-wgz-cream/10 hover:bg-wgz-cream/20 text-wgz-cream font-semibold">← Lihat Halaman Utama</button>
+        <button type="button" onclick="showKasirDashboard()" class="block w-full text-center py-2 rounded-xl bg-wgz-coffee hover:bg-wgz-orange text-wgz-cream hover:text-white font-semibold transition-colors">Buka POS Kasir →</button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Workspace -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-wgz-cream/10">
+        <div>
+          <h2 id="adminSectionTitle" class="font-display font-extrabold text-2xl sm:text-3xl text-wgz-cream">1. Dashboard Ringkasan</h2>
+          <p id="adminModeIndicator" class="text-xs text-wgz-muted mt-1">Ringkasan operasional Warkop Gen Z</p>
+        </div>
+        <div class="flex items-center gap-3 bg-wgz-surface px-4 py-2 rounded-full border border-wgz-cream/10">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span id="adminUserBadge" class="text-xs font-bold text-wgz-cream">Admin Utama</span>
+        </div>
+      </div>
+
+      <!-- TAB 1: DASHBOARD -->
+      <section id="admin-tab-dashboard" class="admin-tab space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <div class="text-xs text-wgz-muted">Total Produk</div>
+            <div id="statTotalProduk" class="font-display font-extrabold text-3xl text-wgz-orange mt-1">0</div>
+          </div>
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <div class="text-xs text-wgz-muted">Total Transaksi</div>
+            <div id="statTotalTransaksi" class="font-display font-extrabold text-3xl text-emerald-400 mt-1">0</div>
+          </div>
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <div class="text-xs text-wgz-muted">Total Pendapatan</div>
+            <div id="statTotalPendapatan" class="font-display font-extrabold text-2xl sm:text-3xl text-wgz-cream mt-1">Rp0</div>
+          </div>
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <div class="text-xs text-wgz-muted">Produk Terlaris</div>
+            <div id="statProdukTerlaris" class="font-bold text-lg text-wgz-orange mt-1 truncate">-</div>
+            <div id="statProdukTerlarisQty" class="text-[11px] text-wgz-muted mt-1">0 terjual</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <h3 class="font-bold text-base text-wgz-cream mb-4">🔥 Produk Terlaris</h3>
+            <div id="dashboardTopProducts" class="space-y-3"></div>
+          </div>
+          <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-base text-wgz-cream">🧾 Transaksi Terbaru</h3>
+              <button type="button" onclick="switchAdminTab('transaksi')" class="text-xs text-wgz-orange hover:underline">Lihat Semua →</button>
+            </div>
+            <div id="dashboardRecentTrx" class="space-y-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: KELOLA PRODUK -->
+      <section id="admin-tab-produk" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+          <h3 id="productFormHeading" class="font-bold text-base text-wgz-orange mb-4">+ Tambah / Edit Produk Menu</h3>
+          <form id="adminProductForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <input type="hidden" id="prodId" />
+            <div>
+              <label class="block text-xs text-wgz-muted mb-1">Nama Produk *</label>
+              <input id="prodName" type="text" required placeholder="Contoh: Kopi Susu Gula Aren" class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            </div>
+            <div>
+              <label class="block text-xs text-wgz-muted mb-1">Kategori *</label>
+              <select id="prodCategory" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream"></select>
+            </div>
+            <div>
+              <label class="block text-xs text-wgz-muted mb-1">Harga (Rp) *</label>
+              <input id="prodPrice" type="number" min="0" step="500" required placeholder="10000" class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            </div>
+            <div>
+              <label class="block text-xs text-wgz-muted mb-1">Path / URL Gambar Produk *</label>
+              <input id="prodImage" type="text" required placeholder="img/kopi-gula-aren.jpg" value="img/kopi-hitam.jpg" class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-xs text-wgz-muted mb-1">Deskripsi Singkat</label>
+              <input id="prodDesc" type="text" placeholder="Deskripsi cita rasa produk..." class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            </div>
+            <div class="lg:col-span-3 flex flex-wrap gap-3">
+              <button type="submit" class="bg-wgz-orange hover:bg-wgz-orangeDark text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan Produk</button>
+              <button type="button" onclick="resetProductForm()" class="bg-wgz-cream/10 hover:bg-wgz-cream/20 text-wgz-cream text-xs font-semibold px-4 py-2.5 rounded-xl">Reset Form</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5 overflow-x-auto">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-bold text-base text-wgz-cream">Daftar Semua Produk</h3>
+            <input id="adminProductSearch" type="text" placeholder="Cari produk..." class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2 text-xs text-wgz-cream w-64" />
+          </div>
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-wgz-cream/10 text-xs text-wgz-muted">
+                <th class="py-3 px-2">Foto</th>
+                <th class="py-3 px-2">Nama Produk</th>
+                <th class="py-3 px-2">Kategori</th>
+                <th class="py-3 px-2">Harga</th>
+                <th class="py-3 px-2 text-right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductTableBody" class="divide-y divide-wgz-cream/5"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: KATEGORI PRODUK -->
+      <section id="admin-tab-kategori" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+          <h3 class="font-bold text-base text-wgz-orange mb-4">+ Tambah / Edit Kategori Produk</h3>
+          <form id="adminCategoryForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="hidden" id="catId" />
+            <input id="catName" type="text" required placeholder="Nama Kategori" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            <input id="catIcon" type="text" value="☕" placeholder="Icon Emoji" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            <input id="catDesc" type="text" placeholder="Deskripsi" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            <div class="md:col-span-3 flex gap-3">
+              <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan Kategori</button>
+              <button type="button" onclick="resetCategoryForm()" class="bg-wgz-cream/10 text-xs px-4 py-2.5 rounded-xl">Batal</button>
+            </div>
+          </form>
+        </div>
+        <div id="adminCategoryList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- TAB 4: KELOLA VIDEO IKLAN -->
+      <section id="admin-tab-iklan" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-orange/30 rounded-2xl p-5">
+          <h3 class="font-bold text-base text-wgz-orange mb-1">🎬 Pengelolaan Video Iklan Halaman Utama</h3>
+          <p class="text-xs text-wgz-muted mb-4">Mendukung tautan YouTube maupun link video MP4. Video aktif otomatis tampil di halaman utama pengunjung.</p>
+          <form id="adminAdForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="hidden" id="adId" />
+            <input id="adTitle" type="text" required placeholder="Judul Video Iklan" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            <input id="adUrl" type="url" required placeholder="https://www.youtube.com/watch?v=... atau link .mp4" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream" />
+            <div class="md:col-span-2 flex items-center justify-between flex-wrap gap-3">
+              <label class="inline-flex items-center gap-2 text-xs cursor-pointer">
+                <input id="adActive" type="checkbox" checked class="accent-orange-500 w-4 h-4" />
+                <span>Aktifkan langsung di Halaman Utama</span>
+              </label>
+              <div class="flex gap-2">
+                <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan Video Iklan</button>
+                <button type="button" onclick="resetAdForm()" class="bg-wgz-cream/10 text-xs px-4 py-2.5 rounded-xl">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="adminAdsList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </section>
+
+      <!-- TAB 5: KATA-KATA MUTIARA -->
+      <section id="admin-tab-quotes" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+          <h3 class="font-bold text-base text-wgz-orange mb-3">💬 Kelola Kata-Kata Mutiara</h3>
+          <form id="adminQuoteForm" class="space-y-3">
+            <input type="hidden" id="quoteId" />
+            <textarea id="quoteText" rows="2" required placeholder="Tulis kata-kata mutiara..." class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm text-wgz-cream"></textarea>
+            <div class="flex gap-2">
+              <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan Quote</button>
+              <button type="button" onclick="resetQuoteForm()" class="bg-wgz-cream/10 text-xs px-4 py-2.5 rounded-xl">Batal</button>
+            </div>
+          </form>
+        </div>
+        <div id="adminQuotesList" class="space-y-3"></div>
+      </section>
+
+      <!-- TAB 6: PENGATURAN WIFI -->
+      <section id="admin-tab-wifi" class="admin-tab hidden">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-6 max-w-xl">
+          <h3 class="font-bold text-lg text-wgz-orange mb-4">📶 Pengaturan Free WiFi Pelanggan</h3>
+          <form id="adminWifiForm" class="space-y-4">
+            <div><label class="block text-xs text-wgz-muted mb-1">Nama Jaringan WiFi (SSID)</label><input id="wifiSsidInput" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Password WiFi</label><input id="wifiPassInput" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Kecepatan</label><input id="wifiSpeedInput" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Catatan</label><input id="wifiNoteInput" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-6 py-3 rounded-xl">Simpan Pengaturan WiFi</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 7: DATA TRANSAKSI -->
+      <section id="admin-tab-transaksi" class="admin-tab hidden">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5 overflow-x-auto">
+          <h3 class="font-bold text-base mb-4">🧾 Data Seluruh Transaksi</h3>
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-wgz-cream/10 text-xs text-wgz-muted">
+                <th class="py-3 px-2">ID Transaksi</th>
+                <th class="py-3 px-2">Waktu</th>
+                <th class="py-3 px-2">Kasir</th>
+                <th class="py-3 px-2">Pesanan</th>
+                <th class="py-3 px-2">Total</th>
+              </tr>
+            </thead>
+            <tbody id="adminTrxTableBody" class="divide-y divide-wgz-cream/5"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 8: LAPORAN PENJUALAN -->
+      <section id="admin-tab-laporan" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-base">📈 Laporan Penjualan per Produk</h3>
+            <button type="button" onclick="exportSalesCSV()" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl">Export CSV</button>
+          </div>
+          <div id="salesReportBreakdown" class="space-y-3"></div>
+        </div>
+      </section>
+
+      <!-- TAB 9: MANAJEMEN KASIR & AKUN -->
+      <section id="admin-tab-kasir" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5 max-w-2xl">
+          <h3 class="font-bold text-base text-wgz-orange mb-1">👥 Manajemen Akun Admin & Kasir</h3>
+          <p class="text-xs text-wgz-muted mb-4">Edit sandi bawaan (<code>admin:123</code> / <code>kasir:123</code>) atau tambah akun kasir baru.</p>
+          <form id="adminUserForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="hidden" id="userEditId" />
+            <input id="userFullName" type="text" required placeholder="Nama Lengkap" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm" />
+            <input id="userUsername" type="text" required placeholder="Username" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm" />
+            <input id="userPassword" type="text" required placeholder="Kata Sandi" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm" />
+            <select id="userRole" class="bg-wgz-black border border-wgz-cream/15 rounded-xl px-3.5 py-2.5 text-sm">
+              <option value="kasir">Kasir</option>
+              <option value="admin">Admin</option>
+            </select>
+            <div class="sm:col-span-2 flex gap-2">
+              <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan Akun</button>
+              <button type="button" onclick="resetUserForm()" class="bg-wgz-cream/10 text-xs px-4 py-2.5 rounded-xl">Reset</button>
+            </div>
+          </form>
+        </div>
+        <div id="adminUsersList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- TAB 10: PENGATURAN WEBSITE & SUPABASE -->
+      <section id="admin-tab-pengaturan" class="admin-tab hidden space-y-6">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-6 max-w-2xl">
+          <h3 class="font-bold text-lg text-wgz-orange mb-4">⚙️ Pengaturan Identitas Website</h3>
+          <form id="adminSiteSettingsForm" class="space-y-4">
+            <div><label class="block text-xs text-wgz-muted mb-1">Judul Utama Hero</label><input id="setSiteTitle" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Tagline Utama</label><input id="setTagline" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Jam Operasional</label><input id="setOpenHours" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            <div><label class="block text-xs text-wgz-muted mb-1">Alamat Lengkap</label><textarea id="setAddress" rows="2" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm"></textarea></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div><label class="block text-xs text-wgz-muted mb-1">Nomor WhatsApp</label><input id="setWhatsapp" type="text" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+              <div><label class="block text-xs text-wgz-muted mb-1">Link WhatsApp (wa.me)</label><input id="setWaLink" type="url" required class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm" /></div>
+            </div>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <button type="submit" class="bg-wgz-orange text-white font-bold text-xs px-6 py-3 rounded-xl">Simpan Pengaturan</button>
+              <button type="button" onclick="handleResetDemo()" class="bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-semibold px-4 py-3 rounded-xl">Reset Data Demo</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =====================================================================
+       BAGIAN 3: DASHBOARD KASIR (POINT OF SALE)
+       ===================================================================== -->
+  <div id="kasirDashboardView" class="hidden min-h-screen flex flex-col">
+    <header class="bg-wgz-surface border-b border-wgz-cream/10 px-4 sm:px-6 h-16 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-3">
+        <img src="img/logo.png" alt="Logo Warkop Gen Z" class="w-10 h-10 rounded-full border-2 border-wgz-orange" />
+        <div>
+          <span class="font-display font-extrabold text-lg text-wgz-cream">WARKOP <span class="text-wgz-orange">GEN Z</span></span>
+          <span class="ml-2 text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">POS KASIR</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" onclick="switchKasirView('pos')" id="btnViewPos" class="px-3.5 py-1.5 rounded-xl bg-wgz-orange text-white text-xs font-bold">Menu & Transaksi</button>
+        <button type="button" onclick="switchKasirView('history')" id="btnViewHistory" class="px-3.5 py-1.5 rounded-xl bg-wgz-cream/10 text-wgz-cream text-xs font-semibold">Riwayat Transaksi</button>
+        <span id="kasirUserBadge" class="hidden md:inline-block text-xs text-wgz-muted px-3 py-1.5 bg-wgz-black rounded-full border border-wgz-cream/10">Kasir</span>
+        <button type="button" onclick="logoutApp()" class="px-3.5 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors">Logout</button>
+      </div>
+    </header>
+
+    <div id="kasirPosView" class="flex-1 max-w-[1440px] w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Katalog Kasir -->
+      <div class="lg:col-span-8 space-y-4">
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-4 space-y-3">
+          <input id="kasirSearchInput" type="text" placeholder="Cari produk..." class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-2.5 text-sm text-wgz-cream" />
+          <div id="kasirCategoryTabs" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div id="kasirProductGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+      </div>
+
+      <!-- Keranjang & Pembayaran -->
+      <div class="lg:col-span-4">
+        <div class="bg-wgz-surface border border-wgz-orange/30 rounded-3xl p-5 sticky top-20 space-y-4 shadow-2xl">
+          <div class="flex items-center justify-between border-b border-wgz-cream/10 pb-3">
+            <h3 class="font-display font-extrabold text-lg">🛒 Keranjang Pesanan</h3>
+            <button type="button" onclick="clearCart()" class="text-xs text-red-400 hover:underline">Kosongkan</button>
+          </div>
+          <div id="kasirCartItems" class="space-y-2.5 max-h-64 overflow-y-auto"></div>
+          <div class="pt-3 border-t border-wgz-cream/10 space-y-3">
+            <div class="flex justify-between text-xs text-wgz-muted"><span>Subtotal</span><span id="cartSubtotal" class="font-bold text-wgz-cream">Rp0</span></div>
+            <div class="flex justify-between text-base font-extrabold"><span>Total Pembayaran</span><span id="cartTotal" class="text-wgz-orange text-xl">Rp0</span></div>
+            <div>
+              <label class="block text-xs text-wgz-muted mb-1">Uang Pembayaran Diterima (Rp)</label>
+              <input id="cashPaidInput" type="number" min="0" step="500" placeholder="0" class="w-full bg-wgz-black border border-wgz-cream/20 rounded-xl px-4 py-2.5 text-base font-bold" />
+              <div class="flex gap-1.5 mt-2">
+                <button type="button" onclick="setQuickCash('exact')" class="flex-1 py-1.5 rounded-lg bg-wgz-cream/10 text-[11px] font-bold">Uang Pas</button>
+                <button type="button" onclick="setQuickCash(20000)" class="flex-1 py-1.5 rounded-lg bg-wgz-cream/10 text-[11px] font-bold">20rb</button>
+                <button type="button" onclick="setQuickCash(50000)" class="flex-1 py-1.5 rounded-lg bg-wgz-cream/10 text-[11px] font-bold">50rb</button>
+                <button type="button" onclick="setQuickCash(100000)" class="flex-1 py-1.5 rounded-lg bg-wgz-cream/10 text-[11px] font-bold">100rb</button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center p-3 rounded-xl bg-wgz-black/70">
+              <span class="text-xs text-wgz-muted">Uang Kembalian</span>
+              <span id="cartChange" class="font-display font-extrabold text-lg text-emerald-400">Rp0</span>
+            </div>
+            <button type="button" onclick="processTransaction()" class="w-full bg-wgz-orange hover:bg-wgz-orangeDark text-white font-extrabold py-3.5 rounded-2xl text-sm shadow-lg shadow-wgz-orange/30">
+              ✓ PROSES TRANSAKSI
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riwayat Transaksi Kasir -->
+    <div id="kasirHistoryView" class="hidden max-w-6xl w-full mx-auto p-4 sm:p-6">
+      <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-5 overflow-x-auto">
+        <h3 class="font-display font-extrabold text-xl mb-4">🧾 Riwayat Transaksi</h3>
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-wgz-cream/10 text-xs text-wgz-muted">
+              <th class="py-3 px-2">ID Struk</th>
+              <th class="py-3 px-2">Waktu</th>
+              <th class="py-3 px-2">Pesanan</th>
+              <th class="py-3 px-2">Total</th>
+              <th class="py-3 px-2 text-right">Cetak</th>
+            </tr>
+          </thead>
+          <tbody id="kasirHistoryTableBody" class="divide-y divide-wgz-cream/5"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGIN -->
+  <div id="loginModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-wgz-surface border border-wgz-orange/40 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+      <button type="button" onclick="closeLoginModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-wgz-cream/10 hover:bg-wgz-orange text-wgz-cream hover:text-white flex items-center justify-center font-bold">✕</button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <img src="img/logo.png" alt="Logo" class="w-11 h-11 rounded-full border border-wgz-orange" />
+        <div>
+          <h3 id="loginModalTitle" class="font-display font-extrabold text-xl text-wgz-cream">Login Admin</h3>
+          <p id="loginModalSubtitle" class="text-xs text-wgz-muted">Masuk ke Dashboard Warkop Gen Z</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 p-1 bg-wgz-black rounded-xl mb-5 border border-wgz-cream/10">
+        <button type="button" id="tabRoleAdmin" onclick="switchLoginRole('admin')" class="py-2 rounded-lg text-xs font-bold transition-colors bg-wgz-orange text-white">Login Admin</button>
+        <button type="button" id="tabRoleKasir" onclick="switchLoginRole('kasir')" class="py-2 rounded-lg text-xs font-bold transition-colors text-wgz-muted">Login Kasir</button>
+      </div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-wgz-muted mb-1.5">Username atau Email Supabase</label>
+          <input id="loginUsername" type="text" required placeholder="admin atau kasir" class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-3 text-sm text-wgz-cream focus:outline-none focus:border-wgz-orange" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-wgz-muted mb-1.5">Kata Sandi</label>
+          <input id="loginPassword" type="password" required placeholder="123" class="w-full bg-wgz-black border border-wgz-cream/15 rounded-xl px-4 py-3 text-sm text-wgz-cream focus:outline-none focus:border-wgz-orange" />
+        </div>
+
+        <div id="loginErrorBox" class="hidden rounded-xl bg-red-500/15 border border-red-500/40 text-red-300 text-xs px-3.5 py-2.5"></div>
+
+        <button type="submit" class="w-full bg-wgz-orange hover:bg-wgz-orangeDark text-white font-bold py-3 rounded-xl shadow-lg shadow-wgz-orange/30 transition-all">
+          Masuk Sekarang
+        </button>
+      </form>
+
+      <div class="mt-5 pt-4 border-t border-wgz-cream/10 text-[11px] text-wgz-muted space-y-1">
+        <div class="font-semibold text-wgz-cream">Sandi Bawaan (Bisa Diedit Admin):</div>
+        <div>• Admin: <code class="text-wgz-orange">admin</code> / Sandi: <code class="text-wgz-orange">123</code></div>
+        <div>• Kasir: <code class="text-wgz-orange">kasir</code> / Sandi: <code class="text-wgz-orange">123</code></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL STRUK PEMBAYARAN -->
+  <div id="receiptModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white text-black rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <div id="receiptPrintArea" class="font-mono text-xs space-y-2">
+        <div class="text-center border-b border-dashed border-black pb-3">
+          <div class="font-extrabold text-base tracking-wide">WARUNG KOPI GEN Z</div>
+          <div class="text-[11px]">Jl. Kemandoran No.119, Pekayon Jaya, Bekasi Selatan</div>
+          <div class="text-[11px]">WA: 089518000755</div>
+        </div>
+        <div class="flex justify-between text-[11px]"><span id="recId">TRX-001</span><span id="recDate">-</span></div>
+        <div class="text-[11px] border-b border-dashed border-black pb-2">Kasir: <span id="recCashier">Kasir</span></div>
+        <div id="recItemsList" class="space-y-1.5 py-2 border-b border-dashed border-black"></div>
+        <div class="space-y-1 pt-1">
+          <div class="flex justify-between font-bold text-sm"><span>Total pembayaran</span><span id="recTotal">Rp0</span></div>
+          <div class="flex justify-between"><span>Uang diterima</span><span id="recPaid">Rp0</span></div>
+          <div class="flex justify-between font-bold"><span>Uang kembalian</span><span id="recChange">Rp0</span></div>
+        </div>
+        <div class="text-center pt-3 border-t border-dashed border-black font-bold">Terima kasih telah berkunjung!</div>
+      </div>
+
+      <div class="mt-5 flex gap-2">
+        <button type="button" onclick="window.print()" class="flex-1 bg-black text-white font-bold py-2.5 rounded-xl text-xs hover:bg-neutral-800">🖨️ Cetak Struk</button>
+        <button type="button" onclick="closeReceiptModal()" class="flex-1 bg-orange-500 text-white font-bold py-2.5 rounded-xl text-xs hover:bg-orange-600">Selesai</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase SDK (Opsional saat kredensial diisi) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    /**
+     * ========================================================================
+     * KONFIGURASI SUPABASE TERPISAH (AMAN UNTUK GITHUB PAGES)
+     * Jangan pernah memasukkan service_role key di sini!
+     * ========================================================================
+     */
+    const SUPABASE_CONFIG = {
+      url: "",     // Isi Project URL Supabase Anda di sini
+      anonKey: ""  // Isi Anon / Public Key Supabase Anda di sini
+    };
+
+    const WarkopStore = (() => {
+      const KEYS = {
+        PRODUCTS: "wgz_gh_products_v1",
+        CATEGORIES: "wgz_gh_categories_v1",
+        ADS: "wgz_gh_ads_v1",
+        QUOTES: "wgz_gh_quotes_v1",
+        WIFI: "wgz_gh_wifi_v1",
+        SETTINGS: "wgz_gh_settings_v1",
+        TRX: "wgz_gh_trx_v1",
+        USERS: "wgz_gh_users_v1",
+        SESSION: "wgz_gh_session_v1"
+      };
+
+      const DEFAULT_CATEGORIES = [
+        { id: "aneka-kopi", name: "Aneka Kopi", icon: "☕", description: "Racikan kopi hitam klasik sampai es kopi susu gula aren kekinian." },
+        { id: "bubur-ayam", name: "Bubur Ayam", icon: "🥣", description: "Bubur ayam hangat gurih dengan topping melimpah." },
+        { id: "bubur-kacang-ijo", name: "Bubur Kacang Ijo", icon: "🫘", description: "Manis legit santan gurih, cocok buat teman begadang." },
+        { id: "roti-bakar", name: "Roti Bakar", icon: "🍞", description: "Roti bakar garing di luar, lumer di dalam." },
+        { id: "internet", name: "Internet (Indomie Telur Kornet)", icon: "🍜", description: "Menu wajib anak nongkrong: Indomie, telur, kornet, dan keju." },
+        { id: "free-wifi", name: "Free WiFi", icon: "📶", description: "Akses internet kencang gratis untuk semua pelanggan Warkop Gen Z." }
+      ];
+
+      const DEFAULT_PRODUCTS = [
+        { id: "p-1", name: "Kopi Hitam", category: "Aneka Kopi", price: 5000, image: "img/kopi-hitam.jpg", desc: "Kopi hitam tubruk robusta pilihan dengan aroma pekat dan rasa autentik." },
+        { id: "p-2", name: "Kopi Susu", category: "Aneka Kopi", price: 7000, image: "img/kopi-susu.jpg", desc: "Perpaduan kopi robusta hangat dengan susu kental manis yang creamy." },
+        { id: "p-3", name: "Kopi Good Day", category: "Aneka Kopi", price: 5000, image: "img/kopi-good-day.jpg", desc: "Kopi instan favorit anak muda dengan varian rasa nikmat (panas/dingin)." },
+        { id: "p-4", name: "Kopi Susu Gula Aren", category: "Aneka Kopi", price: 10000, image: "img/kopi-gula-aren.jpg", desc: "Signature es kopi susu dengan gula aren organik legit dan espresso bold." },
+        { id: "p-5", name: "Cappuccino", category: "Aneka Kopi", price: 10000, image: "img/cappuccino.jpg", desc: "Espresso lembut dengan foam susu tebal dan taburan bubuk cokelat." },
+        { id: "p-6", name: "Es Kopi Susu", category: "Aneka Kopi", price: 10000, image: "img/es-kopi-susu.jpg", desc: "Es kopi susu segar pas untuk menemani obrolan santai siang maupun malam." },
+        { id: "p-7", name: "Kopi Mocca", category: "Aneka Kopi", price: 10000, image: "img/kopi-mocca.jpg", desc: "Kombinasi harmonis antara kopi pilihan dan cokelat premium." },
+        { id: "p-8", name: "Kopi Sachet", category: "Aneka Kopi", price: 4000, image: "img/kopi-sachet.jpg", desc: "Aneka kopi sachet favorit siap seduh hangat atau tambah es batu." },
+        { id: "p-9", name: "Bubur Ayam Biasa", category: "Bubur Ayam", price: 10000, image: "img/bubur-ayam-biasa.jpg", desc: "Bubur lembut dengan suwiran ayam, kacang kedelai goreng, daun bawang, dan kerupuk." },
+        { id: "p-10", name: "Bubur Ayam Spesial", category: "Bubur Ayam", price: 13000, image: "img/bubur-ayam-spesial.jpg", desc: "Porsi ekstra dengan suwiran ayam melimpah, ati ampela, cakwe, dan kerupuk." },
+        { id: "p-11", name: "Bubur Ayam Telur", category: "Bubur Ayam", price: 15000, image: "img/bubur-ayam-telur.jpg", desc: "Bubur ayam komplet ditambah telur rebus/setengah matang yang gurih." },
+        { id: "p-12", name: "Bubur Kacang Ijo", category: "Bubur Kacang Ijo", price: 7000, image: "img/bubur-kacang-ijo.jpg", desc: "Bubur kacang hijau empuk dimasak dengan gula merah, pandan, dan santan gurih." },
+        { id: "p-13", name: "Bubur Kacang Ijo Susu", category: "Bubur Kacang Ijo", price: 8000, image: "img/bubur-kacang-ijo-susu.jpg", desc: "Bubur kacang hijau hangat disiram susu kental manis yang bikin makin nikmat." },
+        { id: "p-14", name: "Bubur Kacang Ijo Ketan Hitam", category: "Bubur Kacang Ijo", price: 10000, image: "img/bubur-ketan-hitam.jpg", desc: "Perpaduan klasik bubur kacang hijau dan ketan hitam legit dengan santan kental." },
+        { id: "p-15", name: "Roti Bakar Cokelat", category: "Roti Bakar", price: 8000, image: "img/roti-bakar-cokelat.jpg", desc: "Roti tebal panggang mentega dengan isian selai dan meses cokelat lumer." },
+        { id: "p-16", name: "Roti Bakar Keju", category: "Roti Bakar", price: 10000, image: "img/roti-bakar-keju.jpg", desc: "Roti bakar renyah dengan parutan keju cheddar melimpah dan susu manis." },
+        { id: "p-17", name: "Roti Bakar Cokelat Keju", category: "Roti Bakar", price: 12000, image: "img/roti-bakar-cokelat-keju.jpg", desc: "Menu best seller: perpaduan manis cokelat lumer dan gurihnya parutan keju." },
+        { id: "p-18", name: "Roti Bakar Strawberry", category: "Roti Bakar", price: 8000, image: "img/roti-bakar-strawberry.jpg", desc: "Roti bakar hangat dengan selai stroberi manis segar." },
+        { id: "p-19", name: "Roti Bakar Blueberry", category: "Roti Bakar", price: 8000, image: "img/roti-bakar-blueberry.jpg", desc: "Roti panggang wangi mentega berpadu selai blueberry manis lembut." },
+        { id: "p-20", name: "INDOMIE SAJA", category: "Internet (Indomie Telur Kornet)", price: 8000, image: "img/indomie-saja.jpg", desc: "Indomie goreng atau kuah dimasak pas dengan sawi hijau dan bawang goreng." },
+        { id: "p-21", name: "INDOMIE Keju", category: "Internet (Indomie Telur Kornet)", price: 10000, image: "img/indomie-keju.jpg", desc: "Indomie hangat bertabur keju parut gurih yang meleleh." },
+        { id: "p-22", name: "INTERNET SPESIAL", category: "Internet (Indomie Telur Kornet)", price: 17000, image: "img/internet-spesial.jpg", desc: "Indomie + Telur + Kornet sapi tumis + keju & cabai rawit, porsi juara!" },
+        { id: "p-23", name: "WiFi Gratis Pelanggan", category: "Free WiFi", price: 0, image: "img/wifi-gratis.jpg", desc: "Gratis akses WiFi High-Speed untuk mabar, nugas, atau kerja santai di Warkop Gen Z." }
+      ];
+
+      const DEFAULT_ADS = [
+        { id: "ad-1", title: "Promo Nongkrong Malam — Ngopi Dulu, Jangan Lupa Bahagia!", url: "https://www.youtube.com/watch?v=lTRiuFIWV54", active: true },
+        { id: "ad-2", title: "Vibe Lo-Fi & Kopi Susu Gula Aren Warkop Gen Z", url: "https://www.youtube.com/watch?v=5qap5aO4i9A", active: false }
+      ];
+
+      const DEFAULT_QUOTES = [
+        { id: "q-1", text: "Kopi boleh pahit, tetapi hidup jangan kehilangan semangat." },
+        { id: "q-2", text: "Tempat terbaik bukan selalu yang mewah, tetapi tempat yang membuat kita nyaman." },
+        { id: "q-3", text: "Ngopi dulu, urusan dunia kita lanjutkan nanti." },
+        { id: "q-4", text: "Satu cangkir kopi, seribu inspirasi bersama teman sejati." }
+      ];
+
+      const DEFAULT_WIFI = {
+        ssid: "WarkopGenZ_FreeWiFi",
+        password: "Ngopi123",
+        speed: "Up to 100 Mbps Unlimited",
+        note: "Gratis untuk seluruh pelanggan yang memesan makanan/minuman di tempat."
+      };
+
+      const DEFAULT_SETTINGS = {
+        siteTitle: "WARUNG KOPI GEN Z",
+        tagline: "Tempat Nongkrong, Ngopi, dan Cerita Tanpa Batas.",
+        address: "Jl. Kemandoran No.119, RT.004/RW.023, Pekayon Jaya, Kec. Bekasi Selatan, Kota Bekasi, Jawa Barat 17148.",
+        whatsapp: "089518000755",
+        waLink: "https://wa.me/6289518000755",
+        creator: "NUR SARIFUDIN",
+        openHours: "Buka Setiap Hari: 08.00 – 02.00 WIB"
+      };
+
+      const DEFAULT_USERS = [
+        { id: "u-admin", username: "admin", password: "123", name: "Admin Utama", role: "admin" },
+        { id: "u-kasir", username: "kasir", password: "123", name: "Kasir Shift 1", role: "kasir" }
+      ];
+
+      const DEFAULT_TRX = [
+        {
+          id: "TRX-000101",
+          createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
+          cashier: "Kasir Shift 1",
+          items: [
+            { id: "p-4", name: "Kopi Susu Gula Aren", qty: 2, price: 10000 },
+            { id: "p-17", name: "Roti Bakar Cokelat Keju", qty: 1, price: 12000 }
+          ],
+          total: 32000,
+          paid: 50000,
+          change: 18000
+        }
+      ];
+
+      let supabaseClient = null;
+      const isCloud = Boolean(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey && SUPABASE_CONFIG.url.startsWith("http"));
+      if (isCloud && window.supabase) {
+        try {
+          supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+        } catch (e) {
+          supabaseClient = null;
+        }
+      }
+
+      function read(k, fb) {
+        try {
+          const raw = localStorage.getItem(k);
+          if (!raw) {
+            localStorage.setItem(k, JSON.stringify(fb));
+            return JSON.parse(JSON.stringify(fb));
+          }
+          return JSON.parse(raw);
+        } catch (e) {
+          return JSON.parse(JSON.stringify(fb));
+        }
+      }
+
+      function write(k, v) {
+        localStorage.setItem(k, JSON.stringify(v));
+      }
+
+      return {
+        isCloudMode: () => Boolean(supabaseClient),
+        getProducts: () => read(KEYS.PRODUCTS, DEFAULT_PRODUCTS),
+        upsertProduct: async (p) => {
+          const list = read(KEYS.PRODUCTS, DEFAULT_PRODUCTS);
+          const idx = list.findIndex(x => x.id === p.id);
+          if (idx >= 0) list[idx] = p; else list.unshift(p);
+          write(KEYS.PRODUCTS, list);
+          if (supabaseClient) await supabaseClient.from("warkop_products").upsert(p);
+        },
+        deleteProduct: async (id) => {
+          write(KEYS.PRODUCTS, read(KEYS.PRODUCTS, DEFAULT_PRODUCTS).filter(x => x.id !== id));
+          if (supabaseClient) await supabaseClient.from("warkop_products").delete().eq("id", id);
+        },
+        getCategories: () => read(KEYS.CATEGORIES, DEFAULT_CATEGORIES),
+        upsertCategory: async (c) => {
+          const list = read(KEYS.CATEGORIES, DEFAULT_CATEGORIES);
+          const idx = list.findIndex(x => x.id === c.id);
+          if (idx >= 0) list[idx] = c; else list.push(c);
+          write(KEYS.CATEGORIES, list);
+          if (supabaseClient) await supabaseClient.from("warkop_categories").upsert(c);
+        },
+        deleteCategory: async (id) => {
+          write(KEYS.CATEGORIES, read(KEYS.CATEGORIES, DEFAULT_CATEGORIES).filter(x => x.id !== id));
+          if (supabaseClient) await supabaseClient.from("warkop_categories").delete().eq("id", id);
+        },
+        getAds: () => read(KEYS.ADS, DEFAULT_ADS),
+        upsertAd: async (ad) => {
+          let list = read(KEYS.ADS, DEFAULT_ADS);
+          if (ad.active) list = list.map(x => ({ ...x, active: false }));
+          const idx = list.findIndex(x => x.id === ad.id);
+          if (idx >= 0) list[idx] = ad; else list.unshift(ad);
+          write(KEYS.ADS, list);
+          if (supabaseClient) await supabaseClient.from("warkop_ads").upsert(list);
+        },
+        deleteAd: async (id) => {
+          write(KEYS.ADS, read(KEYS.ADS, DEFAULT_ADS).filter(x => x.id !== id));
+          if (supabaseClient) await supabaseClient.from("warkop_ads").delete().eq("id", id);
+        },
+        getQuotes: () => read(KEYS.QUOTES, DEFAULT_QUOTES),
+        upsertQuote: async (q) => {
+          const list = read(KEYS.QUOTES, DEFAULT_QUOTES);
+          const idx = list.findIndex(x => x.id === q.id);
+          if (idx >= 0) list[idx] = q; else list.unshift(q);
+          write(KEYS.QUOTES, list);
+          if (supabaseClient) await supabaseClient.from("warkop_quotes").upsert(q);
+        },
+        deleteQuote: async (id) => {
+          write(KEYS.QUOTES, read(KEYS.QUOTES, DEFAULT_QUOTES).filter(x => x.id !== id));
+          if (supabaseClient) await supabaseClient.from("warkop_quotes").delete().eq("id", id);
+        },
+        getWifi: () => read(KEYS.WIFI, DEFAULT_WIFI),
+        saveWifi: async (w) => {
+          write(KEYS.WIFI, w);
+          if (supabaseClient) await supabaseClient.from("warkop_wifi").upsert({ id: 1, ...w });
+        },
+        getSettings: () => read(KEYS.SETTINGS, DEFAULT_SETTINGS),
+        saveSettings: async (s) => {
+          write(KEYS.SETTINGS, s);
+          if (supabaseClient) await supabaseClient.from("warkop_settings").upsert({ id: 1, ...s });
+        },
+        getTransactions: () => read(KEYS.TRX, DEFAULT_TRX),
+        addTransaction: async (t) => {
+          const list = read(KEYS.TRX, DEFAULT_TRX);
+          list.unshift(t);
+          write(KEYS.TRX, list);
+          if (supabaseClient) await supabaseClient.from("warkop_transactions").insert(t);
+        },
+        getUsers: () => read(KEYS.USERS, DEFAULT_USERS),
+        upsertUser: (u) => {
+          const list = read(KEYS.USERS, DEFAULT_USERS);
+          const idx = list.findIndex(x => x.id === u.id);
+          if (idx >= 0) list[idx] = u; else list.push(u);
+          write(KEYS.USERS, list);
+        },
+        deleteUser: (id) => {
+          write(KEYS.USERS, read(KEYS.USERS, DEFAULT_USERS).filter(x => x.id !== id));
+        },
+        login: async (user, pass, role) => {
+          if (supabaseClient && user.includes("@")) {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email: user.trim(), password: pass });
+            if (error) throw new Error(error.message);
+            const prof = await supabaseClient.from("warkop_profiles").select("role, full_name").eq("id", data.user.id).maybeSingle();
+            const actualRole = prof.data?.role || role;
+            if (actualRole !== role) throw new Error("Role akun tidak sesuai.");
+            const sess = { id: data.user.id, username: data.user.email, name: prof.data?.full_name || data.user.email, role: actualRole };
+            sessionStorage.setItem(KEYS.SESSION, JSON.stringify(sess));
+            return sess;
+          }
+          const found = read(KEYS.USERS, DEFAULT_USERS).find(u => u.username.toLowerCase() === user.trim().toLowerCase() && u.password === pass);
+          if (!found) throw new Error("Username atau sandi salah! (Default demo: admin:123 atau kasir:123)");
+          if (found.role !== role) throw new Error(`Akun "${found.username}" memiliki akses ${found.role.toUpperCase()}, bukan ${role.toUpperCase()}.`);
+          sessionStorage.setItem(KEYS.SESSION, JSON.stringify(found));
+          return found;
+        },
+        getSession: () => {
+          try { return JSON.parse(sessionStorage.getItem(KEYS.SESSION)); } catch (e) { return null; }
+        },
+        logout: () => sessionStorage.removeItem(KEYS.SESSION),
+        resetAll: () => {
+          Object.values(KEYS).forEach(k => localStorage.removeItem(k));
+        },
+        rupiah: (n) => Number(n || 0) === 0 ? "GRATIS" : "Rp" + Number(n || 0).toLocaleString("id-ID")
+      };
+    })();
+
+    /* ==================== CONTROLLER UTAMA ==================== */
+    let publicCat = "Semua";
+    let kasirCat = "Semua";
+    let cart = [];
+    let selectedRole = "admin";
+    let quoteIdx = 0;
+
+    function parseVideo(url) {
+      const m = String(url || "").match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+      return m ? { type: "youtube", src: `https://www.youtube.com/embed/${m[1]}?rel=0` } : { type: "mp4", src: url };
+    }
+
+    function renderLanding() {
+      const bar = document.getElementById("modeStatusBar");
+      bar.innerHTML = WarkopStore.isCloudMode()
+        ? `<span class="text-emerald-400 font-bold">● SUPABASE CLOUD AKTIF</span> — Sinkronisasi database & RLS aktif lintas perangkat.`
+        : `<span class="text-amber-400 font-bold">● MODE DEMO LOKAL</span> — Semua fitur CRUD, POS Kasir, Iklan & Quotes berfungsi lokal. Isi <code>SUPABASE_CONFIG</code> di <code>index.html</code> untuk sinkronisasi cloud.`;
+
+      const s = WarkopStore.getSettings();
+      document.getElementById("heroMainTitle").textContent = s.siteTitle;
+      document.getElementById("heroTagline").textContent = `"${s.tagline}"`;
+      document.getElementById("heroOpenHours").textContent = s.openHours;
+      document.getElementById("footerAddress").textContent = s.address;
+      document.getElementById("footerCreator").textContent = s.creator;
+      const wa = document.getElementById("footerWaText");
+      wa.textContent = s.whatsapp;
+      wa.href = s.waLink;
+      document.getElementById("floatingWaBtn").href = s.waLink;
+
+      const ads = WarkopStore.getAds();
+      const activeAd = ads.find(a => a.active) || ads[0];
+      if (activeAd) {
+        document.getElementById("promoVideoTitle").textContent = activeAd.title;
+        const v = parseVideo(activeAd.url);
+        document.getElementById("promoVideoContainer").innerHTML = v.type === "youtube"
+          ? `<iframe class="w-full h-full" src="${v.src}" title="${activeAd.title}" frameborder="0" allowfullscreen></iframe>`
+          : `<video class="w-full h-full object-cover" controls poster="img/hero-warkop.jpg"><source src="${v.src}" type="video/mp4" /></video>`;
+      }
+
+      const w = WarkopStore.getWifi();
+      document.getElementById("publicWifiSsid").textContent = w.ssid;
+      document.getElementById("publicWifiPass").textContent = w.password;
+      document.getElementById("publicWifiSpeed").textContent = w.speed;
+      document.getElementById("publicWifiNote").textContent = w.note;
+
+      renderPublicTabs();
+      renderPublicGrid();
+    }
+
+    function initQuotes() {
+      const textEl = document.getElementById("quoteDisplayText");
+      const dotsEl = document.getElementById("quoteDots");
+      const show = (i) => {
+        const qs = WarkopStore.getQuotes();
+        if (!qs.length) return;
+        quoteIdx = i % qs.length;
+        textEl.classList.add("is-changing");
+        setTimeout(() => {
+          textEl.textContent = `"${qs[quoteIdx].text}"`;
+          textEl.classList.remove("is-changing");
+        }, 200);
+        dotsEl.innerHTML = qs.map((_, idx) =>
+          `<button type="button" onclick="jumpQuote(${idx})" class="h-2 rounded-full transition-all ${idx === quoteIdx ? 'w-7 bg-wgz-orange' : 'w-2 bg-wgz-cream/30'}"></button>`
+        ).join("");
+      };
+      window.jumpQuote = show;
+      show(0);
+      setInterval(() => {
+        const qs = WarkopStore.getQuotes();
+        if (qs.length > 1) show((quoteIdx + 1) % qs.length);
+      }, 4500);
+    }
+
+    function renderPublicTabs() {
+      const tabs = [{ name: "Semua", icon: "✨" }, ...WarkopStore.getCategories()];
+      document.getElementById("publicCategoryTabs").innerHTML = tabs.map(c => `
+        <button type="button" onclick="selectCategoryFilter('${c.name}')" class="px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all ${
+          publicCat === c.name ? "bg-wgz-orange text-white shadow-lg shadow-wgz-orange/30" : "bg-wgz-surface text-wgz-muted hover:text-wgz-cream border border-wgz-cream/10"
+        }">${c.icon || "☕"} ${c.name}</button>
+      `).join("");
+    }
+
+    window.selectCategoryFilter = (cat) => { publicCat = cat; renderPublicTabs(); renderPublicGrid(); };
+
+    function renderPublicGrid() {
+      const q = (document.getElementById("publicSearchInput")?.value || "").toLowerCase().trim();
+      const wifi = WarkopStore.getWifi();
+      const list = WarkopStore.getProducts().filter(p =>
+        (publicCat === "Semua" || p.category === publicCat) &&
+        (!q || p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q))
+      );
+      document.getElementById("publicProductGrid").innerHTML = list.map(p => {
+        const isWifi = p.category === "Free WiFi" || Number(p.price) === 0;
+        return `
+          <article class="menu-card rounded-3xl overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative h-48 overflow-hidden bg-wgz-coffee/30">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='img/kopi-hitam.jpg'" class="w-full h-full object-cover" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-black/75 text-wgz-orange border border-wgz-orange/30">${p.category}</span>
+              </div>
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-wgz-cream">${p.name}</h3>
+                <p class="text-xs text-wgz-muted mt-1.5">${p.desc || ""}</p>
+                ${isWifi ? `<div class="mt-3 p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300"><div>SSID: <strong>${wifi.ssid}</strong></div><div>Pass: <strong>${wifi.password}</strong></div></div>` : ""}
+              </div>
+            </div>
+            <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-wgz-cream/5">
+              <span class="font-display font-extrabold text-lg ${isWifi ? "text-emerald-400" : "text-wgz-orange"}">${WarkopStore.rupiah(p.price)}</span>
+              <a href="#kontak-footer" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-wgz-cream/10 hover:bg-wgz-orange text-wgz-cream hover:text-white transition-colors">Pesan di Tempat</a>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    window.copyWifiPassword = () => {
+      const pass = WarkopStore.getWifi().password;
+      navigator.clipboard?.writeText(pass);
+      alert(`Password WiFi "${pass}" berhasil disalin!`);
+    };
+
+    /* ==================== VIEW NAVIGATION & ROLE GUARD ==================== */
+    window.showLandingPage = () => {
+      document.getElementById("publicLandingView").classList.remove("hidden");
+      document.getElementById("adminDashboardView").classList.add("hidden");
+      document.getElementById("kasirDashboardView").classList.add("hidden");
+      renderLanding();
+    };
+
+    window.showAdminDashboard = () => {
+      const s = WarkopStore.getSession();
+      if (!s || s.role !== "admin") return alert("Akses ditolak! Khusus Admin.");
+      document.getElementById("publicLandingView").classList.add("hidden");
+      document.getElementById("kasirDashboardView").classList.add("hidden");
+      document.getElementById("adminDashboardView").classList.remove("hidden");
+      document.getElementById("adminUserBadge").textContent = `${s.name} (ADMIN)`;
+      refreshAdmin();
+    };
+
+    window.showKasirDashboard = () => {
+      const s = WarkopStore.getSession();
+      if (!s || (s.role !== "kasir" && s.role !== "admin")) return alert("Silakan login sebagai Kasir terlebih dahulu.");
+      document.getElementById("publicLandingView").classList.add("hidden");
+      document.getElementById("adminDashboardView").classList.add("hidden");
+      document.getElementById("kasirDashboardView").classList.remove("hidden");
+      document.getElementById("kasirUserBadge").textContent = s.name;
+      refreshKasir();
+    };
+
+    window.logoutApp = () => {
+      WarkopStore.logout();
+      cart = [];
+      showLandingPage();
+    };
+
+    /* ==================== ADMIN CRUD CONTROLLER ==================== */
+    const TAB_NAMES = {
+      dashboard: "1. Dashboard Ringkasan", produk: "2. Kelola Produk", kategori: "3. Kategori Produk",
+      iklan: "4. Kelola Video Iklan", quotes: "5. Kata-Kata Mutiara", wifi: "6. Pengaturan WiFi",
+      transaksi: "7. Data Transaksi", laporan: "8. Laporan Penjualan", kasir: "9. Manajemen Kasir",
+      pengaturan: "10. Pengaturan Website"
+    };
+
+    window.switchAdminTab = (tab) => {
+      document.querySelectorAll(".admin-tab").forEach(el => el.classList.add("hidden"));
+      document.getElementById("admin-tab-" + tab)?.classList.remove("hidden");
+      document.querySelectorAll("#adminNavMenu .sidebar-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+      document.getElementById("adminSectionTitle").textContent = TAB_NAMES[tab] || "Dashboard Admin";
+      if (window.innerWidth < 1024) document.getElementById("adminSidebar").classList.add("hidden");
+      refreshAdmin();
+    };
+
+    function refreshAdmin() {
+      const prods = WarkopStore.getProducts();
+      const trxs = WarkopStore.getTransactions();
+      const rev = trxs.reduce((s, t) => s + Number(t.total || 0), 0);
+      const qMap = {};
+      trxs.forEach(t => (t.items || []).forEach(i => qMap[i.name] = (qMap[i.name] || 0) + Number(i.qty || 0)));
+      const top = Object.entries(qMap).sort((a, b) => b[1] - a[1]);
+
+      document.getElementById("statTotalProduk").textContent = prods.length;
+      document.getElementById("statTotalTransaksi").textContent = trxs.length;
+      document.getElementById("statTotalPendapatan").textContent = WarkopStore.rupiah(rev);
+      document.getElementById("statProdukTerlaris").textContent = top[0] ? top[0][0] : "-";
+      document.getElementById("statProdukTerlarisQty").textContent = top[0] ? `${top[0][1]} terjual` : "0 terjual";
+
+      document.getElementById("dashboardTopProducts").innerHTML = top.slice(0, 5).map(([n, q], i) =>
+        `<div class="flex justify-between p-3 rounded-xl bg-wgz-black/60 text-sm"><span>#${i + 1} ${n}</span><strong class="text-wgz-orange">${q} terjual</strong></div>`
+      ).join("") || "<p class='text-xs text-wgz-muted'>Belum ada data.</p>";
+
+      document.getElementById("dashboardRecentTrx").innerHTML = trxs.slice(0, 5).map(t =>
+        `<div class="flex justify-between p-3 rounded-xl bg-wgz-black/60 text-xs"><span><strong>${t.id}</strong> • ${t.cashier}</span><strong class="text-emerald-400">${WarkopStore.rupiah(t.total)}</strong></div>`
+      ).join("") || "<p class='text-xs text-wgz-muted'>Belum ada transaksi.</p>";
+
+      document.getElementById("prodCategory").innerHTML = WarkopStore.getCategories().map(c => `<option value="${c.name}">${c.name}</option>`).join("");
+      const pq = (document.getElementById("adminProductSearch")?.value || "").toLowerCase();
+      document.getElementById("adminProductTableBody").innerHTML = prods.filter(p => !pq || p.name.toLowerCase().includes(pq)).map(p => `
+        <tr>
+          <td class="py-2 px-2"><img src="${p.image}" onerror="this.src='img/kopi-hitam.jpg'" class="w-11 h-11 rounded-xl object-cover" /></td>
+          <td class="py-2 px-2 font-bold">${p.name}</td>
+          <td class="py-2 px-2 text-xs text-wgz-muted">${p.category}</td>
+          <td class="py-2 px-2 font-bold text-wgz-orange">${WarkopStore.rupiah(p.price)}</td>
+          <td class="py-2 px-2 text-right space-x-1">
+            <button type="button" onclick='editProd(${JSON.stringify(p)})' class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs font-bold">Edit</button>
+            <button type="button" onclick="delProd('${p.id}')" class="px-2.5 py-1 rounded bg-red-500/20 text-red-300 text-xs font-bold">Hapus</button>
+          </td>
+        </tr>
+      `).join("");
+
+      document.getElementById("adminCategoryList").innerHTML = WarkopStore.getCategories().map(c => `
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-4 flex justify-between items-center">
+          <div><div class="font-bold">${c.icon} ${c.name}</div><div class="text-xs text-wgz-muted">${c.description || ""}</div></div>
+          <div class="flex gap-1">
+            <button type="button" onclick='editCat(${JSON.stringify(c)})' class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs">Edit</button>
+            <button type="button" onclick="delCat('${c.id}')" class="px-2.5 py-1 rounded bg-red-500/20 text-red-300 text-xs">Hapus</button>
+          </div>
+        </div>
+      `).join("");
+
+      document.getElementById("adminAdsList").innerHTML = WarkopStore.getAds().map(a => `
+        <div class="bg-wgz-surface border ${a.active ? "border-wgz-orange" : "border-wgz-cream/10"} rounded-2xl p-4 space-y-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${a.active ? "bg-emerald-500/20 text-emerald-300" : "bg-wgz-cream/10 text-wgz-muted"}">${a.active ? "AKTIF DI HALAMAN UTAMA" : "NONAKTIF"}</span>
+          <div class="font-bold text-sm">${a.title}</div>
+          <div class="text-xs text-wgz-orange break-all">${a.url}</div>
+          <div class="flex gap-2 pt-2">
+            <button type="button" onclick='toggleAd(${JSON.stringify(a)})' class="px-3 py-1 rounded bg-emerald-600 text-white text-xs font-bold">${a.active ? "Nonaktifkan" : "Aktifkan"}</button>
+            <button type="button" onclick='editAd(${JSON.stringify(a)})' class="px-3 py-1 rounded bg-amber-500/20 text-amber-300 text-xs">Edit</button>
+            <button type="button" onclick="delAd('${a.id}')" class="px-3 py-1 rounded bg-red-500/20 text-red-300 text-xs">Hapus</button>
+          </div>
+        </div>
+      `).join("");
+
+      document.getElementById("adminQuotesList").innerHTML = WarkopStore.getQuotes().map(q => `
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-xl p-4 flex justify-between items-center gap-3">
+          <div class="text-sm">"${q.text}"</div>
+          <div class="flex gap-1.5">
+            <button type="button" onclick='editQuote(${JSON.stringify(q)})' class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs">Edit</button>
+            <button type="button" onclick="delQuote('${q.id}')" class="px-2.5 py-1 rounded bg-red-500/20 text-red-300 text-xs">Hapus</button>
+          </div>
+        </div>
+      `).join("");
+
+      const w = WarkopStore.getWifi();
+      document.getElementById("wifiSsidInput").value = w.ssid;
+      document.getElementById("wifiPassInput").value = w.password;
+      document.getElementById("wifiSpeedInput").value = w.speed;
+      document.getElementById("wifiNoteInput").value = w.note;
+
+      const s = WarkopStore.getSettings();
+      document.getElementById("setSiteTitle").value = s.siteTitle;
+      document.getElementById("setTagline").value = s.tagline;
+      document.getElementById("setOpenHours").value = s.openHours;
+      document.getElementById("setAddress").value = s.address;
+      document.getElementById("setWhatsapp").value = s.whatsapp;
+      document.getElementById("setWaLink").value = s.waLink;
+
+      document.getElementById("adminTrxTableBody").innerHTML = trxs.map(t => `
+        <tr>
+          <td class="py-2.5 px-2 font-mono text-xs text-wgz-orange">${t.id}</td>
+          <td class="py-2.5 px-2 text-xs text-wgz-muted">${new Date(t.createdAt).toLocaleString("id-ID")}</td>
+          <td class="py-2.5 px-2 text-xs">${t.cashier}</td>
+          <td class="py-2.5 px-2 text-xs">${(t.items || []).map(i => `${i.name} (${i.qty}x)`).join(", ")}</td>
+          <td class="py-2.5 px-2 font-bold text-emerald-400">${WarkopStore.rupiah(t.total)}</td>
+        </tr>
+      `).join("");
+
+      const rMap = {};
+      trxs.forEach(t => (t.items || []).forEach(i => {
+        if (!rMap[i.name]) rMap[i.name] = { qty: 0, rev: 0 };
+        rMap[i.name].qty += Number(i.qty || 0);
+        rMap[i.name].rev += Number(i.qty || 0) * Number(i.price || 0);
+      }));
+      document.getElementById("salesReportBreakdown").innerHTML = Object.entries(rMap).map(([n, d]) =>
+        `<div class="flex justify-between p-3 rounded-xl bg-wgz-black/60 text-sm"><span>${n} (${d.qty} unit)</span><strong class="text-wgz-orange">${WarkopStore.rupiah(d.rev)}</strong></div>`
+      ).join("") || "<p class='text-xs text-wgz-muted'>Belum ada penjualan.</p>";
+
+      document.getElementById("adminUsersList").innerHTML = WarkopStore.getUsers().map(u => `
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl p-4 space-y-2">
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-wgz-orange/20 text-wgz-orange">${u.role}</span>
+          <div class="font-bold">${u.name}</div>
+          <div class="text-xs text-wgz-muted">User: <code>${u.username}</code> | Sandi: <code class="text-wgz-orange">${u.password}</code></div>
+          <div class="flex gap-2 pt-2">
+            <button type="button" onclick='editUser(${JSON.stringify(u)})' class="px-3 py-1 rounded bg-amber-500/20 text-amber-300 text-xs">Edit Sandi</button>
+            ${u.id !== "u-admin" ? `<button type="button" onclick="delUser('${u.id}')" class="px-3 py-1 rounded bg-red-500/20 text-red-300 text-xs">Hapus</button>` : ""}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.editProd = (p) => {
+      document.getElementById("prodId").value = p.id;
+      document.getElementById("prodName").value = p.name;
+      document.getElementById("prodCategory").value = p.category;
+      document.getElementById("prodPrice").value = p.price;
+      document.getElementById("prodImage").value = p.image;
+      document.getElementById("prodDesc").value = p.desc || "";
+    };
+    window.resetProductForm = () => { document.getElementById("adminProductForm").reset(); document.getElementById("prodId").value = ""; document.getElementById("prodImage").value = "img/kopi-hitam.jpg"; };
+    window.delProd = async (id) => { if (confirm("Hapus produk?")) { await WarkopStore.deleteProduct(id); refreshAdmin(); } };
+
+    window.editCat = (c) => { document.getElementById("catId").value = c.id; document.getElementById("catName").value = c.name; document.getElementById("catIcon").value = c.icon; document.getElementById("catDesc").value = c.description || ""; };
+    window.resetCategoryForm = () => { document.getElementById("adminCategoryForm").reset(); document.getElementById("catId").value = ""; };
+    window.delCat = async (id) => { if (confirm("Hapus kategori?")) { await WarkopStore.deleteCategory(id); refreshAdmin(); } };
+
+    window.editAd = (a) => { document.getElementById("adId").value = a.id; document.getElementById("adTitle").value = a.title; document.getElementById("adUrl").value = a.url; document.getElementById("adActive").checked = Boolean(a.active); };
+    window.resetAdForm = () => { document.getElementById("adminAdForm").reset(); document.getElementById("adId").value = ""; };
+    window.toggleAd = async (a) => { await WarkopStore.upsertAd({ ...a, active: !a.active }); refreshAdmin(); };
+    window.delAd = async (id) => { if (confirm("Hapus iklan?")) { await WarkopStore.deleteAd(id); refreshAdmin(); } };
+
+    window.editQuote = (q) => { document.getElementById("quoteId").value = q.id; document.getElementById("quoteText").value = q.text; };
+    window.resetQuoteForm = () => { document.getElementById("adminQuoteForm").reset(); document.getElementById("quoteId").value = ""; };
+    window.delQuote = async (id) => { if (confirm("Hapus quote?")) { await WarkopStore.deleteQuote(id); refreshAdmin(); } };
+
+    window.editUser = (u) => { document.getElementById("userEditId").value = u.id; document.getElementById("userFullName").value = u.name; document.getElementById("userUsername").value = u.username; document.getElementById("userPassword").value = u.password; document.getElementById("userRole").value = u.role; };
+    window.resetUserForm = () => { document.getElementById("adminUserForm").reset(); document.getElementById("userEditId").value = ""; };
+    window.delUser = (id) => { if (confirm("Hapus akun?")) { WarkopStore.deleteUser(id); refreshAdmin(); } };
+
+    window.handleResetDemo = () => { if (confirm("Kembalikan semua data ke pengaturan awal?")) { WarkopStore.resetAll(); refreshAdmin(); alert("Data berhasil direset."); } };
+    window.exportSalesCSV = () => {
+      const rows = [["ID", "Waktu", "Kasir", "Total", "Dibayar", "Kembalian"]];
+      WarkopStore.getTransactions().forEach(t => rows.push([t.id, t.createdAt, t.cashier, t.total, t.paid, t.change]));
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([rows.map(r => r.join(",")).join("\n")], { type: "text/csv" }));
+      a.download = "laporan-warkop-gen-z.csv";
+      a.click();
+    };
+
+    /* ==================== KASIR POS CONTROLLER ==================== */
+    window.switchKasirView = (v) => {
+      document.getElementById("kasirPosView").classList.toggle("hidden", v !== "pos");
+      document.getElementById("kasirHistoryView").classList.toggle("hidden", v !== "history");
+      if (v === "history") {
+        document.getElementById("kasirHistoryTableBody").innerHTML = WarkopStore.getTransactions().map(t => `
+          <tr>
+            <td class="py-2.5 px-2 font-mono text-xs text-wgz-orange">${t.id}</td>
+            <td class="py-2.5 px-2 text-xs text-wgz-muted">${new Date(t.createdAt).toLocaleString("id-ID")}</td>
+            <td class="py-2.5 px-2 text-xs">${(t.items || []).map(i => `${i.name} (${i.qty}x)`).join(", ")}</td>
+            <td class="py-2.5 px-2 font-bold text-emerald-400">${WarkopStore.rupiah(t.total)}</td>
+            <td class="py-2.5 px-2 text-right"><button type="button" onclick='showReceipt(${JSON.stringify(t)})' class="px-2.5 py-1 rounded bg-wgz-orange/20 text-wgz-orange text-xs font-bold">Struk</button></td>
+          </tr>
+        `).join("");
+      }
+    };
+
+    function refreshKasir() {
+      const cats = [{ name: "Semua", icon: "✨" }, ...WarkopStore.getCategories()];
+      document.getElementById("kasirCategoryTabs").innerHTML = cats.map(c => `
+        <button type="button" onclick="selectKasirCat('${c.name}')" class="px-3 py-1.5 rounded-xl text-xs font-bold ${
+          kasirCat === c.name ? "bg-wgz-orange text-white" : "bg-wgz-black text-wgz-muted"
+        }">${c.icon || "☕"} ${c.name}</button>
+      `).join("");
+
+      const q = (document.getElementById("kasirSearchInput")?.value || "").toLowerCase().trim();
+      const prods = WarkopStore.getProducts().filter(p => (kasirCat === "Semua" || p.category === kasirCat) && (!q || p.name.toLowerCase().includes(q)));
+      document.getElementById("kasirProductGrid").innerHTML = prods.map(p => `
+        <div class="bg-wgz-surface border border-wgz-cream/10 rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <img src="${p.image}" onerror="this.src='img/kopi-hitam.jpg'" class="w-full h-28 object-cover" />
+            <div class="p-3">
+              <div class="text-[10px] text-wgz-orange font-bold">${p.category}</div>
+              <div class="font-bold text-xs mt-0.5 line-clamp-1">${p.name}</div>
+              <div class="font-display font-extrabold text-sm mt-1">${WarkopStore.rupiah(p.price)}</div>
+            </div>
+          </div>
+          <div class="px-3 pb-3">
+            <button type="button" onclick="addCart('${p.id}')" class="w-full py-2 rounded-xl bg-wgz-orange hover:bg-wgz-orangeDark text-white text-xs font-bold">+ Tambah</button>
+          </div>
+        </div>
+      `).join("");
+      renderCart();
+    }
+
+    window.selectKasirCat = (c) => { kasirCat = c; refreshKasir(); };
+    window.addCart = (id) => {
+      const p = WarkopStore.getProducts().find(x => x.id === id);
+      if (!p) return;
+      const ex = cart.find(x => x.id === id);
+      if (ex) ex.qty += 1; else cart.push({ id: p.id, name: p.name, price: Number(p.price), qty: 1 });
+      renderCart();
+    };
+    window.updQty = (id, d) => {
+      const i = cart.findIndex(x => x.id === id);
+      if (i < 0) return;
+      cart[i].qty += d;
+      if (cart[i].qty <= 0) cart.splice(i, 1);
+      renderCart();
+    };
+    window.clearCart = () => { cart = []; document.getElementById("cashPaidInput").value = ""; renderCart(); };
+
+    function renderCart() {
+      const tot = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById("cartSubtotal").textContent = WarkopStore.rupiah(tot);
+      document.getElementById("cartTotal").textContent = WarkopStore.rupiah(tot);
+      document.getElementById("kasirCartItems").innerHTML = cart.length ? cart.map(i => `
+        <div class="p-2.5 rounded-xl bg-wgz-black/70 flex items-center justify-between gap-2 text-xs">
+          <div class="min-w-0">
+            <div class="font-bold truncate">${i.name}</div>
+            <div class="text-wgz-orange">${WarkopStore.rupiah(i.price)} x ${i.qty}</div>
+          </div>
+          <div class="flex items-center gap-1">
+            <button type="button" onclick="updQty('${i.id}', -1)" class="w-6 h-6 rounded bg-wgz-cream/10 font-bold">-</button>
+            <span class="w-5 text-center font-bold">${i.qty}</span>
+            <button type="button" onclick="updQty('${i.id}', 1)" class="w-6 h-6 rounded bg-wgz-cream/10 font-bold">+</button>
+          </div>
+        </div>
+      `).join("") : "<p class='text-xs text-wgz-muted text-center py-6'>Keranjang kosong.</p>";
+      calcChange();
+    }
+
+    window.setQuickCash = (v) => {
+      const tot = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById("cashPaidInput").value = v === "exact" ? tot : v;
+      calcChange();
+    };
+
+    function calcChange() {
+      const tot = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const paid = Number(document.getElementById("cashPaidInput")?.value || 0);
+      const diff = paid - tot;
+      document.getElementById("cartChange").textContent = diff >= 0 ? WarkopStore.rupiah(diff) : "Kurang " + WarkopStore.rupiah(Math.abs(diff));
+    }
+
+    window.processTransaction = async () => {
+      if (!cart.length) return alert("Keranjang masih kosong!");
+      const tot = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const paid = Number(document.getElementById("cashPaidInput")?.value || 0);
+      if (paid < tot) return alert("Nominal pembayaran kurang!");
+      const s = WarkopStore.getSession();
+      const trx = {
+        id: "TRX-" + Date.now().toString().slice(-6),
+        createdAt: new Date().toISOString(),
+        cashier: s?.name || "Kasir",
+        items: JSON.parse(JSON.stringify(cart)),
+        total: tot,
+        paid,
+        change: paid - tot
+      };
+      await WarkopStore.addTransaction(trx);
+      showReceipt(trx);
+      clearCart();
+    };
+
+    window.showReceipt = (t) => {
+      document.getElementById("recId").textContent = t.id;
+      document.getElementById("recDate").textContent = new Date(t.createdAt).toLocaleString("id-ID");
+      document.getElementById("recCashier").textContent = t.cashier;
+      document.getElementById("recItemsList").innerHTML = t.items.map(i => `
+        <div><div class="font-bold">${i.name}</div><div class="flex justify-between text-[11px]"><span>${i.qty} x ${WarkopStore.rupiah(i.price)}</span><span>${WarkopStore.rupiah(i.qty * i.price)}</span></div></div>
+      `).join("");
+      document.getElementById("recTotal").textContent = WarkopStore.rupiah(t.total);
+      document.getElementById("recPaid").textContent = WarkopStore.rupiah(t.paid);
+      document.getElementById("recChange").textContent = WarkopStore.rupiah(t.change);
+      document.getElementById("receiptModal").classList.remove("hidden");
+    };
+    window.closeReceiptModal = () => document.getElementById("receiptModal").classList.add("hidden");
+
+    /* ==================== INIT EVENTS ==================== */
+    window.openLoginModal = (role) => {
+      document.getElementById("loginDropdownMenu").classList.add("hidden");
+      switchLoginRole(role || "admin");
+      document.getElementById("loginErrorBox").classList.add("hidden");
+      document.getElementById("loginModal").classList.remove("hidden");
+    };
+    window.closeLoginModal = () => document.getElementById("loginModal").classList.add("hidden");
+    window.switchLoginRole = (role) => {
+      selectedRole = role;
+      document.getElementById("loginModalTitle").textContent = role === "admin" ? "Login Admin" : "Login Kasir";
+      document.getElementById("tabRoleAdmin").className = role === "admin" ? "py-2 rounded-lg text-xs font-bold bg-wgz-orange text-white" : "py-2 rounded-lg text-xs font-bold text-wgz-muted";
+      document.getElementById("tabRoleKasir").className = role === "kasir" ? "py-2 rounded-lg text-xs font-bold bg-wgz-orange text-white" : "py-2 rounded-lg text-xs font-bold text-wgz-muted";
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderLanding();
+      initQuotes();
+
+      document.getElementById("loginDropdownBtn").addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.getElementById("loginDropdownMenu").classList.toggle("hidden");
+      });
+      document.addEventListener("click", () => document.getElementById("loginDropdownMenu").classList.add("hidden"));
+      document.getElementById("adminMobileMenuBtn")?.addEventListener("click", () => document.getElementById("adminSidebar").classList.toggle("hidden"));
+      document.querySelectorAll("#adminNavMenu .sidebar-btn").forEach(b => b.addEventListener("click", () => switchAdminTab(b.dataset.tab)));
+
+      document.getElementById("publicSearchInput").addEventListener("input", renderPublicGrid);
+      document.getElementById("adminProductSearch").addEventListener("input", refreshAdmin);
+      document.getElementById("kasirSearchInput").addEventListener("input", refreshKasir);
+      document.getElementById("cashPaidInput").addEventListener("input", calcChange);
+
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = document.getElementById("loginErrorBox");
+        err.classList.add("hidden");
+        try {
+          const u = await WarkopStore.login(document.getElementById("loginUsername").value, document.getElementById("loginPassword").value, selectedRole);
+          closeLoginModal();
+          if (u.role === "admin") showAdminDashboard(); else showKasirDashboard();
+        } catch (ex) {
+          err.textContent = ex.message;
+          err.classList.remove("hidden");
+        }
+      });
+
+      document.getElementById("adminProductForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await WarkopStore.upsertProduct({
+          id: document.getElementById("prodId").value || "p-" + Date.now(),
+          name: document.getElementById("prodName").value.trim(),
+          category: document.getElementById("prodCategory").value,
+          price: Number(document.getElementById("prodPrice").value || 0),
+          image: document.getElementById("prodImage").value.trim() || "img/kopi-hitam.jpg",
+          desc: document.getElementById("prodDesc").value.trim()
+        });
+        resetProductForm();
+        refreshAdmin();
+      });
+
+      document.getElementById("adminCategoryForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await WarkopStore.upsertCategory({
+          id: document.getElementById("catId").value || "cat-" + Date.now(),
+          name: document.getElementById("catName").value.trim(),
+          icon: document.getElementById("catIcon").value.trim() || "☕",
+          description: document.getElementById("catDesc").value.trim()
+        });
+        resetCategoryForm();
+        refreshAdmin();
+      });
+
+      document.getElementById("adminAdForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await WarkopStore.upsertAd({
+          id: document.getElementById("adId").value || "ad-" + Date.now(),
+          title: document.getElementById("adTitle").value.trim(),
+          url: document.getElementById("adUrl").value.trim(),
+          active: document.getElementById("adActive").checked
+        });
+        resetAdForm();
+        refreshAdmin();
+      });
+
+      document.getElementById("adminQuoteForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await WarkopStore.upsertQuote({
+          id: document.getElementById("quoteId").value || "q-" + Date.now(),
+          text: document.getElementById("quoteText").value.trim()
+        });
+        resetQuoteForm();
+        refreshAdmin();
+      });
+
+      document.getElementById("adminWifiForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await WarkopStore.saveWifi({
+          ssid: document.getElementById("wifiSsidInput").value.trim(),
+          password: document.getElementById("wifiPassInput").value.trim(),
+          speed: document.getElementById("wifiSpeedInput").value.trim(),
+          note: document.getElementById("wifiNoteInput").value.trim()
+        });
+        alert("Pengaturan WiFi disimpan!");
+      });
+
+      document.getElementById("adminUserForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        WarkopStore.upsertUser({
+          id: document.getElementById("userEditId").value || "u-" + Date.now(),
+          name: document.getElementById("userFullName").value.trim(),
+          username: document.getElementById("userUsername").value.trim(),
+          password: document.getElementById("userPassword").value.trim(),
+          role: document.getElementById("userRole").value
+        });
+        resetUserForm();
+        refreshAdmin();
+      });
+
+      document.getElementById("adminSiteSettingsForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const old = WarkopStore.getSettings();
+        await WarkopStore.saveSettings({
+          ...old,
+          siteTitle: document.getElementById("setSiteTitle").value.trim(),
+          tagline: document.getElementById("setTagline").value.trim(),
+          openHours: document.getElementById("setOpenHours").value.trim(),
+          address: document.getElementById("setAddress").value.trim(),
+          whatsapp: document.getElementById("setWhatsapp").value.trim(),
+          waLink: document.getElementById("setWaLink").value.trim()
+        });
+        alert("Pengaturan website disimpan!");
+      });
+    });
+  </script>
+</body>
+</html>
