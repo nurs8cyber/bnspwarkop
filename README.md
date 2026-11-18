@@ -27,8 +27,8 @@ Website bisnis kuliner modern **WARKOP GEN Z** (*Tempat Nongkrong, Ngopi, dan Ce
 ## Informasi Login & Penyimpanan Data
 
 - **Kredensial Bawaan (Bisa Diedit Admin di menu 9. Manajemen Kasir)**:
-  - **Admin**: username `admin` | sandi `123`
-  - **Kasir**: username `kasir` | sandi `123`
+  - **Admin**: username `admin` | sandi `TANYA`
+  - **Kasir**: username `kasir` | sandi `TANYA`
 - **Mode Demo Lokal vs. Supabase**:
   - Secara bawaan, aplikasi berjalan dalam **Mode Demo Lokal** menggunakan penyimpanan browser sehingga langsung bisa dicoba di GitHub Pages tanpa pengaturan server tambahan.
   - Untuk sinkronisasi lintas perangkat secara real-time dengan **Row Level Security (RLS)**, buka file `index.html`, cari bagian `SUPABASE_CONFIG`, lalu isi `url` dan `anonKey` dari project Supabase Anda (jangan pernah memasukkan `service_role` key ke frontend).
